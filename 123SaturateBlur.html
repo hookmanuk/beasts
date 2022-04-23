@@ -1,0 +1,84 @@
+﻿<html>
+<input type="hidden" id="__yoroi_connector_api_injected_type" value="nightly">
+<head>
+</head>
+<body style="text-align:center;margin:0">
+    <div id="ct" style="display:none;color:#888">Res: <input id="res" type="text" value="1024"> 
+    <a id="dl" style="color:#0f0" href="#">rendering</a><br></div><div style="display:grid;">
+    <canvas id="cw" width="1024" height="1024" style="height:100vh;width:100vw;border:0;grid-column:1;grid-row:1;object-fit:contain;"></canvas></div>
+    <script>
+        var i, n, e, h = document.getElementById("cw"), x = h.getContext("2d"), w = 0, b = 0, p = !1, k = 0, y = .031, q = .037, A = 1024, C = .15, s = !0, D = m(),
+            F = !1, a = 9e5,
+            o = document.getElementById("ct"), c = !0, N = D, r = document.getElementById("res"), u = document.getElementById("dl"); let U = [];
+        function f() { p || (D = s ? 0 : m(), s = !s, h.style.opacity = 1, void 0 !== i && (i.remove(), i = void 0), d()) }
+        function m() { return Date.now() / 864e5 - 19065.75 }
+        function M() {
+            clearTimeout(e), p || (D = m(), c && .001 < D - N &&
+                (void 0 === i && (i = h.cloneNode(!0), h.parentNode.insertBefore(i, h.nextSibling)), i.getContext("2d").drawImage(h, 0, 0), i.style.opacity = 1,
+                    h.style.opacity = 0, setTimeout(v, 100))), e = setTimeout(M, a)
+        }
+        function d()
+        {
+            var t; p || ("" == r.value && (r.value = h.width, o.style.display = "none", e = setTimeout(M, a)), t = +r.value, A = t, h.width = t, h.height = t,
+                w = 298048, setTimeout(v, 100), u.href = "#", u.innerHTML = "rendering", clearTimeout(e), e = setTimeout(M, a))
+        }
+        function l()
+        {
+            var t = 1e4 * Math.sin(w++); return t - Math.floor(t)
+        }
+        function j(t)
+        {
+            x.globalAlpha = t
+        }
+        function v()
+        {
+            N = D, j(1),
+                x.fillStyle = "#fff"
+                , x.filter = 'saturate(500%) blur(2px)'               
+                , x.fillRect(0, 0, A, A), j(.2), t = 0; var i = .691481, n = .107603, e = .512819, h = .714123, s = .995135,
+                a = .701519, o = .902472 + D / 7965, c = 3.355607, r = 2.330141 + D / 1290.4, u = 3.44206, f = 2.947148 + D / 325.6, m = 2.150812,
+                M = c * Math.cos(o), c = c * Math.sin(o), o = u * Math.cos(r), u = u * Math.sin(r), r = m * Math.cos(f), m = m * Math.sin(f);
+            [c1, c2, c3] = [35, 36, 37], w = 298065, U = []; f = Math.floor(C * Math.pow(A, 1.15) * (1 + t)); for (z(f / 4, n, i, t, M, c, c1),
+                z(f / 4, h, e, t, o, u, c2), z(f / 4, a, s, t, r, m, c3), y = .031, F = !(q = .037), b = 0; b < 400 && !F;)U.forEach(t => t.rotate()), b++;
+            var d = 999, l = -999, v = 999, T = -999; for (let t = 0; t < U.length; t++) {
+                var g = U[t]; g.x < d && (d = g.x), g.x > l && (l = g.x),
+                    g.y < v && (v = g.y), g.y > T && (T = g.y)
+            } k = (T + v) / 2, 399 < b && (sf = Math.max(1, Math.min(.55 / ((T - v) * y), .55 / ((l - d) * q))), q *= sf, y *= sf), F = !(w = 298065), U = [],
+                z(f, n, i, t, M, c, c1), z(f, h, e, t, o, u, c2), z(f, a, s, t, r, m, c3), p = !(b = 0), B()
+        }
+        function T(t)
+        {
+            var i = { [35]: [41, 6, 37, 6, 66, 14], 36: [77, 13, 21, -3, 122, 28], 37: [232, 10, 222, 13, 202, 18] };
+            return "rgb(" + (i[t][0] + l() * i[t][1]) + "," + (i[t][2] + l() * i[t][3]) + "," + (i[t][4] + l() * i[t][5]) + ")"            
+        }
+        function z(i, n, e, h, s, a, o)
+        {
+            var c = U.length; for (let t = c; t < c + i; t++)U[t] = new g(2 * l() - 1, 2 * l() - 1, 2 * l() - 1, n, e, h, s, a, T(o))
+        }
+        function g(t, i, n, e, h, s, a, o, c)
+        {
+            this.x = t, this.y = i, this.z = n, this.s = e, this.r = h, this.a = a, this.b = o, this.t = c, this.rotate = () => {
+                nx = this.x - .05 * Math.sin(this.a * this.y - this.s + this.y * Math.sin(this.y)),
+                    ny = this.y - .05 * Math.sin(this.b * this.x - this.r + this.x * Math.sin(this.x)), this.x = nx,
+                    this.y = ny, (.95 < .5 + q * this.x || .5 + q * this.x < .05 || .5 + y * (this.y - k) < .05 || .9 < .5 + y * (this.y - k)) && (F = !0)
+            }, this.i = () => {
+                x0 = this.x, y0 = this.y, this.rotate(), x.beginPath(), x.lineWidth = 1, x.strokeStyle = this.t;
+                var t = A * (.5 + y * (y0 - k)), i = A * (.5 + y * (this.y - k)); x.moveTo(A * (.5 + q * x0), t), x.lineTo(A * (.5 + q * this.x), i),
+                    x.moveTo(A * (.5 - q * x0), t), x.lineTo(A * (.5 - q * this.x), i), x.stroke()
+            }
+        }
+        function B()
+        {
+            var t; 318 <= b ? (t = Math.floor(.0351 * A), j(.7), x.font = t + "px Ubuntu Mono, Courier New", x.textAlign = "center", x.fillStyle = "#081319",
+                mnText = "#123", s || (mnText += " (original form)"), x.fillText(mnText, A / 2, A - .55 * t), u.download = "beast.png", u.innerHTML = "save",
+                u.title = "right click, save as", u.href = h.toDataURL("image/png").replace(/^data:image\/[^;]/, "data:application/octet-stream"), p = !1) : p
+            && requestAnimationFrame(B), U.forEach(t => t.i()), b++
+        }
+        h.addEventListener("dblclick", function ()
+        { clearTimeout(n), clearTimeout(e), o.style.display = "block" }),
+            h.addEventListener("click", function () { clearTimeout(n), n = setTimeout(f, 250) }), r.addEventListener("change", d),
+            window.onblur = function () { c = !1 },
+            window.onfocus = function () { c = !0 }, d();
+    </script>
+</body>
+</html>
